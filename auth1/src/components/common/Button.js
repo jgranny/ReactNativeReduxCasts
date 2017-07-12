@@ -15,9 +15,7 @@ const Button = ({ pressFunc, children }) => {
 
 const styles = {
   buttonStyle: {
-    //Expand to fill as much content as it can
     flex: 1,
-    //Stretch to fill limits of container
     alignSelf: 'stretch',
     backgroundColor: '#fff',
     borderRadius: 5,
