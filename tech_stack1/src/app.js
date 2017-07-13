@@ -6,10 +6,13 @@ import reducers from './reducers';
 import { Header } from './components/common';
 import LibraryList from './components/LibraryList';
 
+//Including style with flex:1 tells the view to take up as much space on the
+// screen as it can.
+
 const App = () => {
   return (
     <Provider store={createStore(reducers)}>
-      <View>
+      <View style={{ flex: 1 }}>
         <Header headerText="Tech Stack" />
         <LibraryList />
       </View>
