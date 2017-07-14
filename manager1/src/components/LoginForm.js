@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Text } from 'react-native';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
-import { Card, CardSection, Input, Button } from './common';
+import { Card, CardSection, Input, Button, Spinner } from './common';
 
 class LoginForm extends Component {
   onEmailChange(text) {
@@ -16,6 +17,18 @@ class LoginForm extends Component {
     const { email, password } = this.props;
 
     this.props.loginUser({ email, password });
+  }
+
+  renderButton() {
+    if (this.props.loading) {
+      return <Spinner />;
+    }
+
+    return (
+      <Button onPress={this.onButtonPress.bind(this)}>
+        Login
+      </Button>
+    );
   }
 
   render() {
@@ -40,22 +53,31 @@ class LoginForm extends Component {
           />
         </CardSection>
 
+        <Text style={styles.errorTextStyle}>
+          {this.props.error}
+        </Text>
+
         <CardSection>
-          <Button onPress={this.onButtonPress.bind(this)}>
-            Login
-          </Button>
+          {this.renderButton()}
         </CardSection>
       </Card>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    // Now the component has access to the email from the reducer
-    email: state.auth.email,
-    password: state.auth.password
-  };
+const styles = {
+  errorTextStyle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
+  }
+};
+
+const mapStateToProps = ({ auth }) => {
+  const { email, password, error, loading } = auth;
+
+  //Give the component access to all these variables in state
+  return { email, password, error, loading };
 };
 
 export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginForm);
