@@ -5,16 +5,20 @@ import LoginForm from './components/LoginForm';
 const RouterComponent = () => {
   return (
     <Router>
-      <Scene key="root" modal hideNavBar>
-        <Scene key="auth" initial title="Please Login" >
-            <Scene key="login" component={LoginForm} />
-        </Scene>
+      <Scene key="root">
+        <Scene key="auth" component={LoginForm} initial title="Please Login" />
       </Scene>
     </Router>
   );
 };
 
 export default RouterComponent;
+
+// <Scene key="root" modal hideNavBar>
+//   <Scene key="auth" initial title="Please Login" >
+//       <Scene key="login" component={LoginForm} />
+//   </Scene>
+// </Scene>
 
 // <Scene key="main">
 // <Scene
