@@ -2,8 +2,11 @@ import React from 'react';
 import { View } from 'react-native';
 
 const CardSection = (props) => {
+  //Making style take an array enables passing more styles later on in different
+  // parts of the program, passing props.style will override any defined styles
+  // on this page. This is necessary if we want to edit specific components we create
   return (
-    <View style={styles.containerStyle}>
+    <View style={[styles.containerStyle, props.style]}>
       {props.children}
     </View>
   );

@@ -31,18 +31,6 @@ class LoginForm extends Component {
     );
   }
 
-  renderError() {
-    if (this.props.error === 'Authentication Failed') {
-      return (
-        <CardSection>
-          <Text style={styles.errorTextStyle}>
-            {this.props.error}
-          </Text>
-        </CardSection>
-      );
-    }
-  }
-
   render() {
     return (
       <Card>
@@ -65,7 +53,9 @@ class LoginForm extends Component {
           />
         </CardSection>
 
-        {this.renderError()}
+        <Text style={styles.errorTextStyle}>
+          {this.props.error}
+        </Text>
 
         <CardSection>
           {this.renderButton()}
@@ -78,7 +68,7 @@ class LoginForm extends Component {
 const styles = {
   errorTextStyle: {
     fontSize: 20,
-    paddingLeft: 80,
+    alignSelf: 'center',
     color: 'red'
   }
 };
